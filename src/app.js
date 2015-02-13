@@ -12,8 +12,8 @@ var getClients = function (success, failure) {
 };
 
 var main = new UI.Card({
-  title: "Your Table",
   icon: "images/menu_icon.png",
+  title: " Your Table",
   subtitle: "Usage:",
   body: "UP = Front of House, Down = Customer."
 });
@@ -22,8 +22,8 @@ main.show();
 
 main.on("click", "up", function(e) {
   var card = new UI.Card({
-    title: "Your Table",
     icon: "images/menu_icon.png",
+    title: " Your Table",
     subtitle: "Front of House",
     body: "Waiting for customers..."
   });
