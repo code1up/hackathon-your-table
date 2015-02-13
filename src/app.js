@@ -21,16 +21,18 @@ var main = new UI.Card({
 main.show();
 
 main.on("click", "up", function(e) {
-  var card = new UI.Card();
+  var card = new UI.Card({
+    title: "Your Table",
+    icon: "images/menu_icon.png",
+    subtitle: "Front of House",
+    body: "Waiting for customers..."
+  });
 
-  card.title("Your Table");
-  card.subtitle("Front of House");
-  card.body("Waiting for customers...");
   card.show();
 
   var clients = { };
 
-  setInterval(function () {
+  var updateClients = function () {
     var success = function (data) {
       console.log("AJAX SUCCEEDED");
 
@@ -74,16 +76,16 @@ main.on("click", "up", function(e) {
     };
 
     getClients(success, failure);
+  };
 
-    }, 3000);
+  setInterval(updateClients, 3000);
 });
 
-/*
-main.on("click", "up", function(e) {
+main.on("click", "down", function(e) {
   var menu = new UI.Menu({
     sections: [{
       items: [{
-        title: "Front of House",
+        title: "Your Table",
         icon: "images/menu_icon.png",
         subtitle: "Can do Menus"
       }, {
@@ -98,7 +100,6 @@ main.on("click", "up", function(e) {
   });
   menu.show();
 });
-*/
 
 main.on("click", "select", function(e) {
 });
