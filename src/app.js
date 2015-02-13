@@ -82,8 +82,23 @@ main.on("click", "up", function(e) {
 });
 
 main.on("click", "down", function(e) {
+  var order = { };
+
   var menu = new UI.Menu({
     sections: [
+      {
+        title: "Starters",
+        items: [
+          {
+            title: "Houmous",
+            subtitle: "Pour smoky PERi-PERi oil over creamy houmous and dig in with strips of warm pitta."
+          },
+          {
+            title: "Red Pepper Dip",
+            subtitle: "Dive in to tempting roasted red pepper and chilli spice dip with warm pitta strips."
+          }
+        ]
+      },
       {
         title: "Mains",
         items: [
@@ -101,8 +116,18 @@ main.on("click", "down", function(e) {
   });
 
   menu.on("select", function(e) {
-    console.log("Selected item #" + e.itemIndex + " of section #" + e.sectionIndex);
-    console.log("The item is titled '" + e.item.title + "'");
+    switch (e.sectionIndex) {
+      case 0:
+        order.starter = e.item.title;
+        break;
+
+      case 1:
+        order.main = e.item.title;
+        break;
+    }
+
+    console.log(order.starter);
+    console.log(order.main);
   });
 
   menu.show();
