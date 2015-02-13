@@ -2,6 +2,25 @@ var UI = require("ui");
 var ajax = require("ajax");
 var Vibe = require('ui/vibe');
 
+var placeOrder = function (order) {
+  var success = function (data) {
+    console.log("placeOrder::AJAX SUCCEEDED");
+  };
+
+  var failure = function (error) {
+    console.log("placeOrder::AJAX ERROR: " + error);
+  };
+
+  var options = {
+    url: "https://crackling-inferno-8307.firebaseio.com/tables/4/table.json",
+    type: "json",
+    method: "PATCH",
+    data: order
+  };
+
+  ajax(options, success, failure);
+};
+
 var getClients = function (success, failure) {
   var options = {
     url: "https://crackling-inferno-8307.firebaseio.com/clients/.json",
@@ -34,7 +53,7 @@ main.on("click", "up", function(e) {
 
   var updateClients = function () {
     var success = function (data) {
-      console.log("AJAX SUCCEEDED");
+      console.log("updateClients::AJAX SUCCEEDED");
 
       var changed = false;
 
@@ -72,7 +91,7 @@ main.on("click", "up", function(e) {
     };
 
     var failure = function (error) {
-      console.log("AJAX ERROR: " + error);
+      console.log("updateClients::AJAX ERROR: " + error);
     };
 
     getClients(success, failure);
@@ -111,6 +130,17 @@ main.on("click", "down", function(e) {
             subtitle: "Two succulent chicken breasts joined by crispy skin."
           }
         ]
+      },
+      {
+        title: "Desserts",
+        items: [
+          {
+            title: "Choc-a-Lot Cake"
+          },
+          {
+            title: "Carrot Cake"
+          }
+        ]
       }
     ]
   });
@@ -124,10 +154,19 @@ main.on("click", "down", function(e) {
       case 1:
         order.main = e.item.title;
         break;
+
+      case 2:
+        order.dessert = e.item.title;
+        break;
+
+      case 3:
+        placeOrder(order);
+        break;
     }
 
-    console.log(order.starter);
-    console.log(order.main);
+    console.log("Starter: " + order.starter);
+    console.log("Main: " + order.main);
+    console.log("Dessert: " + order.dessert);
   });
 
   menu.show();
