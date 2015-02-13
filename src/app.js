@@ -83,21 +83,28 @@ main.on("click", "up", function(e) {
 
 main.on("click", "down", function(e) {
   var menu = new UI.Menu({
-    sections: [{
-      items: [{
-        title: "Your Table",
-        icon: "images/menu_icon.png",
-        subtitle: "Can do Menus"
-      }, {
-        title: "Second Item",
-        subtitle: "Subtitle Text"
-      }]
-    }]
+    sections: [
+      {
+        title: "Mains",
+        items: [
+          {
+            title: "Chicken Thighs",
+            subtitle: "Four boneless chicken thighs, flame-grilled with skin on."
+          },
+          {
+            title: "Chicken Butterfly",
+            subtitle: "Two succulent chicken breasts joined by crispy skin."
+          }
+        ]
+      }
+    ]
   });
+
   menu.on("select", function(e) {
     console.log("Selected item #" + e.itemIndex + " of section #" + e.sectionIndex);
     console.log("The item is titled '" + e.item.title + "'");
   });
+
   menu.show();
 });
 
