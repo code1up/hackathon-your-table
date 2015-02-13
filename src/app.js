@@ -44,18 +44,10 @@ main.on("click", "up", function(e) {
 
           changed = existingClient.distance !== data[username].distance;
 
-          console.log("CHANGED: " + changed);
-
           if (changed) {
             existingClient.distance = data[username].distance;
 
-            card.body("Customer update!");
-
-            setTimeout(function () {
-              card.body("Waiting for customers...");
-            }, 5000);
-
-            Vibe.vibrate("long");
+            console.log("CHANGED: " + username);
           }
         } else {
           console.log("NEW USERNAME: " + username);
@@ -64,6 +56,16 @@ main.on("click", "up", function(e) {
             distance: data[username].distance
           };
         }
+      }
+
+      if (changed) {
+        card.body("Customer update, please check front of house dashboard!");
+
+        setTimeout(function () {
+          card.body("Waiting for customers...");
+        }, 5000);
+
+        Vibe.vibrate("long");
       }
     };
 
