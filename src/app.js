@@ -141,6 +141,13 @@ main.on("click", "down", function(e) {
             title: "Carrot Cake"
           }
         ]
+      },
+      {
+        items: [
+          {
+            title: "PLACE MY ORDER"
+          }
+        ]
       }
     ]
   });
