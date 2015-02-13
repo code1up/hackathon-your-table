@@ -1,15 +1,14 @@
 var UI = require("ui");
-var Ajax = require("ajax");
+var ajax = require("ajax");
 var Vibe = require('ui/vibe');
 
 var getClients = function (success, failure) {
   var options = {
-    url: " https://crackling-inferno-8307.firebaseio.com/clients/.json",
-    type: "json",
-    method: "GET"
+    url: "https://crackling-inferno-8307.firebaseio.com/clients/.json",
+    type: "json"
   };
 
-  Ajax(options, success, failure);
+  ajax(options, success, failure);
 };
 
 var main = new UI.Card({
@@ -26,7 +25,7 @@ main.on("click", "up", function(e) {
 
   card.title("Your Table");
   card.subtitle("Front of House");
-  card.body("Listening...");
+  card.body("Waiting for customers...");
   card.show();
 
   var clients = { };
