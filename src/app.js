@@ -29,7 +29,7 @@ main.on("click", "up", function(e) {
   card.body("Listening...");
   card.show();
 
-  var clients = [];
+  var clients = { };
 
   setInterval(function () {
     var success = function (data) {
@@ -48,16 +48,15 @@ main.on("click", "up", function(e) {
           console.log("CHANGED: " + changed);
 
           if (changed) {
-            existingClient.distance = data[username].distance)
+            existingClient.distance = data[username].distance;
             Vibe.vibrate("long");
           }
         } else {
           console.log("NEW USERNAME: " + username);
 
-          clients.push({
-            username: username,
+          clients[username] = {
             distance: data[username].distance
-          })
+          };
         }
       }
     };
