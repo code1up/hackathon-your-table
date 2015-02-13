@@ -1,4 +1,16 @@
 var UI = require("ui");
+var Ajax = require("ajax");
+var vibe = require('ui/vibe');
+
+var getClients = function (success, failure) {
+  var options = {
+    url: " https://crackling-inferno-8307.firebaseio.com/clients/.json",
+    type: "json",
+    method: "GET"
+  };
+
+  Ajax(options, success, failure);
+};
 
 var main = new UI.Card({
   title: "Your Table",
@@ -12,16 +24,51 @@ main.show();
 main.on("click", "up", function(e) {
   var card = new UI.Card();
 
-  card.title("A Card");
-  card.subtitle("Is a Window");
-  card.body("The simplest window type in Pebble.js.");
+  card.title("Your Table");
+  card.subtitle("Front of House");
+  card.body("Listening...");
   card.show();
 
-  var times = 0;
+  var clients = [];
 
   setInterval(function () {
-    card.title('' + times++);
-  }, 1000);
+    var success = function (data) {
+      console.log("AJAX SUCCEEDED");
+
+      var changed = false;
+
+      for (var username in data) {
+        var existingClient = clients[username];
+
+        if (existingClient) {
+          console.log("EXISTNG USERNAME: " + username);
+
+          changed = existingClient.distance !== data[username].distance;
+
+          console.log("CHANGED: " + changed);
+
+          if (changed) {
+            existingClient.distance = data[username].distance)
+            Vibe.vibrate("long");
+          }
+        } else {
+          console.log("NEW USERNAME: " + username);
+
+          clients.push({
+            username: username,
+            distance: data[username].distance
+          })
+        }
+      }
+    };
+
+    var failure = function (error) {
+      console.log("AJAX ERROR: " + error);
+    };
+
+    getClients(success, failure);
+
+    }, 3000);
 });
 
 /*
