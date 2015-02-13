@@ -17,9 +17,11 @@ main.on("click", "up", function(e) {
   card.body("The simplest window type in Pebble.js.");
   card.show();
 
-  setTimeout(function () {
-    card.title("TIMED");
-  }, 3000);
+  var times = 0;
+
+  setInterval(function () {
+    card.title('' + times++);
+  }, 1000);
 });
 
 /*
