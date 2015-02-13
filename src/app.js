@@ -18,7 +18,7 @@ main.on("click", "up", function(e) {
   card.show();
 
   setTimeout(function () {
-    card.title = "TIMED";
+    card.title("TIMED");
   }, 3000);
 });
 
