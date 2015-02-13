@@ -42,7 +42,7 @@ main.on("click", "up", function(e) {
         if (existingClient) {
           console.log("EXISTNG USERNAME: " + username);
 
-          changed = existingClient.distance !== data[username].distance;
+          changed = changed || existingClient.distance !== data[username].distance;
 
           if (changed) {
             existingClient.distance = data[username].distance;
