@@ -1,6 +1,6 @@
 var UI = require("ui");
 var Ajax = require("ajax");
-var vibe = require('ui/vibe');
+var Vibe = require('ui/vibe');
 
 var getClients = function (success, failure) {
   var options = {
