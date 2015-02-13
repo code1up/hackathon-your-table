@@ -12,7 +12,7 @@ var placeOrder = function (order) {
   };
 
   var options = {
-    url: "https://crackling-inferno-8307.firebaseio.com/tables/4/table.json",
+    url: "https://crackling-inferno-8307.firebaseio.com/tables/4/table/menu.json",
     type: "json",
     method: "PATCH",
     data: order
