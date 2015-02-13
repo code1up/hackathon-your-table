@@ -48,6 +48,13 @@ main.on("click", "up", function(e) {
 
           if (changed) {
             existingClient.distance = data[username].distance;
+
+            card.body("Customer update!");
+
+            setTimeout(function () {
+              card.body("Waiting for customers...");
+            }, 5000);
+
             Vibe.vibrate("long");
           }
         } else {
